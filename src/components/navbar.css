@@ -1,0 +1,24 @@
+.navbar{
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+.navbar img{
+    height: 100px;
+    width: 100px;
+}
+
+.categorias ul{
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.widgetCarrito{
+    display: flex;
+    align-items: center;
+    color: white;
+}
