@@ -19,24 +19,19 @@ export default function ItemListContainer(args) {
                 .then(productsByCateg => setProducts(productsByCateg))
                 .catch(error => alert(error + " - No se pudo cargar la categoría solicitada", categParam))
                 .finally(() => setIsLoading(false))
-                console.log("parametro de categoría: ", categParam)
         }
         else {
             getMockAPIData()
                 .then((productList) => {
-                    console.log("Datos recibidos en ItemListContainer", productList);
                     setProducts(productList);
                 })
                 .catch((error) => {
-                    console.log("Error solicitando los datos", error);
-                    alert("Algo salió mal buscando los productos")
+                    alert("Ocurrió un error: " + error)
                 })
                 .finally(() => {
-                    console.log("GetMockAPIData finalizada")
                     setIsLoading(false)
                 })
         }
-
     }, [categParam])
 
 
@@ -45,7 +40,7 @@ export default function ItemListContainer(args) {
             <div className="item-list-container">
                 <h2>{args.titulo}</h2>
                 {isLoading
-                    ? <p className="item-list-container__loading">Cargando...</p>
+                    ? <div className="item-list-container__loading"><p>Cargando :P</p></div>
                     : ""}
                 <div>
                     <h4>Nuestros productos</h4>

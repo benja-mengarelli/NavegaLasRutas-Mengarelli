@@ -27,6 +27,7 @@ export default function ItemDetailContainer(args) {
             height="800"
             src={product.imagenURL}
         />
+        {product.precio > 0 ? <h3 className="item-card-price">Precio: $ {product.precio}</h3> : <h3 className="item-card-price">Gratis</h3>}
         <h3 className="item-card-price">Precio: $ {product.precio}</h3>
         <div style={{ textAlign: "center" }}>
             <p>{product.descripcion}</p>

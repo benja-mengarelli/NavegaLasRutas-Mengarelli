@@ -1,18 +1,25 @@
 .item-card {
     display: flex;
     flex-direction: column;
-    width: 360px;
+    width: 300px;
     text-align: center;
-    background-color: rgba(128, 128, 128, 0.521);
-    border: 1px solid #003cc9;
-    border-radius: 0.55rem;
+    border: 1px solid #FF206E;
+    border-radius: 70px !important;
     overflow: hidden;
+}
+
+.item-card:hover {
+    box-shadow: 0 4px 8px #FF206E;
+    transform: translateY(-5px);
+    rotate: 1deg;
+    transition: all 0.5s ease;
 }
 
 .item-card-img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    border-radius: 50px 50px 0 0;
 }
 
 .item-card-content {
@@ -26,36 +33,30 @@
 .item-card-title {
     font-size: 1.15rem;
     font-weight: 600;
-    letter-spacing: 0.075rem;
+    letter-spacing: 0.008rem;
     text-transform: uppercase;
     margin: 0.5rem 0 1.5rem 0;
 }
 
 .item-card-price {
     font-size: 1.45rem;
-    color: rgba(211, 3, 3, 0.521);
+    color: #FBFF12;
     margin-bottom: 1rem;
 }
 
-.item-card-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.item-card-footer {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.45);
-    margin-top: 0.25rem;
-}
-
 .item-card button {
-    background-color: rgba(10, 235, 119, 0.521);
-    color: black;
-    border: none;
-    border-radius: 0.25rem;
+    background-color: #FF206E;
+    color: rgb(0, 0, 0);
+    font-weight: 400;
+    border: 1px solid #FF206E;
+    border-radius: 50px;
     padding: 0.5rem 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.item-card button:hover {
+    background-color: #FBFF12;
+    color: #000000;
+    border: 1px solid #FBFF12;
 }
