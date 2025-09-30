@@ -20,22 +20,22 @@ export default function ItemDetailContainer(args) {
     }
 
     return (
-    <div className="item-card">
-        <h2 className="item-card-title">{product.nombre}</h2>
-        <img
-            className="item-card-img"
-            height="800"
-            src={product.imagenURL}
-        />
-        {product.precio > 0 ? <h3 className="item-card-price">Precio: $ {product.precio}</h3> : <h3 className="item-card-price">Gratis</h3>}
-        <h3 className="item-card-price">Precio: $ {product.precio}</h3>
-        <div style={{ textAlign: "center" }}>
-            <p>{product.descripcion}</p>
+    <div className="item-detail-container">
+        <div className="item-detail">
+            <div className="item-detail-img">
+            <img src={product.imagenURL}/>
+            <h2 className="item-detail-title">{product.nombre}</h2>
+            </div>
+            <div className='description'>
+                <div style={{ textAlign: "center" }}>
+                    <p>{product.descripcion}</p>
+                </div>
+                {product.precio > 0 ? <h3 className="item-detail-price">Precio: $ {product.precio}</h3> : <h3 className="item-detail-price">Gratis</h3>}
+                <div>
+                    <button>Agregar al 🛒</button>
+                </div>
+            </div>
         </div>
-        <div>
-            <button>Agregar al carrito</button>
-        </div>
-
     </div>
     )
 } 

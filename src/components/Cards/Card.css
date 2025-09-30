@@ -50,6 +50,7 @@
     font-weight: 400;
     border: 1px solid #FF206E;
     border-radius: 50px;
+    margin: 0.3rem;
     padding: 0.5rem 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;

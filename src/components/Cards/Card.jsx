@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import './Card.css'
 
 /*Se deconstruye la prop mandada */
-function Item({ id, title, imgURL, price }) {
+function Item({ id, title, imgURL, price, category }) {
 
     return (
         <div className="item-card">
@@ -22,7 +22,7 @@ function Item({ id, title, imgURL, price }) {
                     <button>🛒</button>
                 </Link>
             </div>
-            <Link to={`/categoria/${id}`}>
+            <Link to={`/categoria/${category}`}>
                 <button>Ver más de esta categoría</button>
             </Link>
         </div>

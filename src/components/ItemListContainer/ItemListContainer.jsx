@@ -40,7 +40,7 @@ export default function ItemListContainer(args) {
             <div className="item-list-container">
                 <h2>{args.titulo}</h2>
                 {isLoading
-                    ? <div className="item-list-container__loading"><p>Cargando :P</p></div>
+                    ? <div className="item-list-container__loading"><p>Cargando 🤘</p></div>
                     : ""}
                 <div>
                     <h4>Nuestros productos</h4>
@@ -52,6 +52,7 @@ export default function ItemListContainer(args) {
                                 title={item.nombre}
                                 imgURL={item.imagenURL}
                                 price={item.precio}
+                                category={item.categoria}
                             />
                         ))}
 
