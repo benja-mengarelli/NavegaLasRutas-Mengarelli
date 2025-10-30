@@ -1,5 +1,6 @@
 import Item from '../Cards/Card';
-import getMockAPIData, { getProductsByCateg } from '../../data/SimularAPI';
+import { getProductsByCateg } from '../../data/firebase';
+import { getProductos } from '../../data/firebase';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import './ItemListContainer.css';
@@ -21,7 +22,7 @@ export default function ItemListContainer(args) {
                 .finally(() => setIsLoading(false))
         }
         else {
-            getMockAPIData()
+            getProductos()
                 .then((productList) => {
                     setProducts(productList);
                 })

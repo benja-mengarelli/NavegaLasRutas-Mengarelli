@@ -1,12 +1,14 @@
 import Item from '../Cards/Card';
-import getMockAPIData, { getProductById } from '../../data/SimularAPI';
+import { getProductById } from '../../data/firebase';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import './ItemDetail.css';
+import cartContext from "../../context/cartContext";
 
 export default function ItemDetailContainer(args) {
     const { idParam } = useParams();
     const [product, setProduct] = useState({ loading: true });
+    const context = useContext(cartContext);
 
     useEffect(() => {
         getProductById(idParam)
@@ -32,7 +34,7 @@ export default function ItemDetailContainer(args) {
                 </div>
                 {product.precio > 0 ? <h3 className="item-detail-price">Precio: $ {product.precio}</h3> : <h3 className="item-detail-price">Gratis</h3>}
                 <div>
-                    <button>Agregar al 🛒</button>
+                    <button onClick={ () => context.addToCart(product) }>Agregar al 🛒</button>
                 </div>
             </div>
         </div>

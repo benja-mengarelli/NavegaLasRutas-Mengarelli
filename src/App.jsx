@@ -3,25 +3,31 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import Navbar from './components/NavBar/NavBar';
 import { BrowserRouter, Routes, Route } from 'react-router';
+import app from './data/firebase';
+import { CartProvider } from './context/cartContext';
+import CartContainer from './components/Cart/CartContainer';
 
 
 function App() {
-  const nombre = "Benja"
+  console.log("Firebase App iniciada: ", app.name);
 
   return (
     <>
-      <BrowserRouter>
-        <Navbar />
+      <CartProvider>
+        <BrowserRouter>
+          <Navbar />
 
-        <Routes>
-          <Route path="/" element={<ItemListContainer /* titulo={`Bienvenido a mi tienda ${nombre}`} */ />} />
-          <Route path="/categoria/:categParam" element={ <ItemListContainer />} />
-          <Route path="/detalle/:idParam" element={ <ItemDetailContainer/>} />
-          <Route path="*" element={<h1>404: Página no encontrada</h1>} />
-        </Routes>
+          {/* <button onClick={cargarProductos}>cargar prods</button> */}
 
-      </BrowserRouter>
+          <Routes>
+            <Route path="/" element={<ItemListContainer /* titulo={`Bienvenido a mi tienda ${nombre}`} */ />} />
+            <Route path="/categoria/:categParam" element={ <ItemListContainer />} />
+            <Route path="/detalle/:idParam" element={ <ItemDetailContainer/>} />
+            <Route path="*" element={<h1>404: Página no encontrada</h1>} />
+          </Routes>
 
+        </BrowserRouter>
+      </CartProvider>
       
 
     </>
