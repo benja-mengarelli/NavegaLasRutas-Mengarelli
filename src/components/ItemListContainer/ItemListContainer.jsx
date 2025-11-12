@@ -2,7 +2,7 @@ import Item from '../Cards/Card';
 import { getProductsByCateg } from '../../data/firebase';
 import { getProductos } from '../../data/firebase';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import './ItemListContainer.css';
 
 

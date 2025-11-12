@@ -5,6 +5,7 @@ import FormComprador from "./FormComprador";
 
 function CartContainer() {
     const { cartItems, removeItem, clearCart } = useContext(cartContext)
+    const total = cartItems.reduce((s, i) => s + (i.price * i.count), 0);
 
 
     async function handleCheckout(formData) {
@@ -28,21 +29,32 @@ function CartContainer() {
     // TODO: renderizado condicional cuando el carrito esté vacío
 
     return (
-        <div>
-            <h3>Tu carrito</h3>
-            <div>
-                {
-                    cartItems.map(item => <div>
-                        <img width="100" src={item.imgURL}></img>
-                        <h4>{item.title}</h4>
-                        <p>Unidades: {item.count}</p>
-                        <p>$ {item.price * item.count}</p>
-                        <button onClick={() => removeItem(item.id)}>Quitar del carrito</button>
+        <div className="cart-container">
+            <h2>Carrito</h2>
+            {cartItems.length === 0 ? <p>El carrito está vacío.</p> : (
+                <div className="cart-items">
+                    {cartItems.map(item => (
+                        <div key={item.id} className="cart-item">
+                            <img width="100" src={item.imgURL} alt={item.title}></img>
+                            <div className="cart-item-info">
+                                <h4>{item.title}</h4>
+                                <div className="cart-item-controls">
+                                    <button onClick={() => removeItem(item.id)}>-</button>
+                                    <span className="item-count">{item.count}</span>
+                                    <button onClick={() => addToCart({ id: item.id, title: item.title, imgURL: item.imgURL, price: item.price })}>+</button>
+                                </div>
+                                <p>$ {item.price * item.count}</p>
+                                <button onClick={() => removeItemCompleto(item.id)}>Eliminar</button>
+                            </div>
+                        </div>
+                    ))}
+                    <div className="cart-summary">
+                        <FormComprador handleCheckout={handleCheckout} />
+                        <h3>Total: $ {total}</h3>
+                        {/* <button onClick={submitCart}>Comprar</button> */}
                     </div>
-                    )
-                }
-            </div>
-            <FormComprador handleCheckout={handleCheckout} />
+                </div>
+            )}
         </div>
     )
 }

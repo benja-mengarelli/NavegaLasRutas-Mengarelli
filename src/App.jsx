@@ -2,7 +2,7 @@ import './App.css';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import Navbar from './components/NavBar/NavBar';
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import app from './data/firebase';
 import { CartProvider } from './context/cartContext';
 import CartContainer from './components/Cart/CartContainer';
@@ -20,9 +20,10 @@ function App() {
           {/* <button onClick={cargarProductos}>cargar prods</button> */}
 
           <Routes>
-            <Route path="/" element={<ItemListContainer /* titulo={`Bienvenido a mi tienda ${nombre}`} */ />} />
+            <Route path="/" element={<ItemListContainer/>} />
             <Route path="/categoria/:categParam" element={ <ItemListContainer />} />
             <Route path="/detalle/:idParam" element={ <ItemDetailContainer/>} />
+            <Route path="/cart" element={<CartContainer />} />
             <Route path="*" element={<h1>404: Página no encontrada</h1>} />
           </Routes>
 

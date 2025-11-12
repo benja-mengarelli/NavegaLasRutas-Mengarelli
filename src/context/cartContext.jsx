@@ -1,11 +1,8 @@
 import { createContext, useState } from "react";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 const cartContext = createContext();
-// * 1. Crear un context
-// * 2. Definir un <Provider> y darle un value
-// * 3. "Consumir" el context
-// * 4. Crear un Custom Provider -> componente
-
 
 export function CartProvider(props) {
     const [cartItems, setCartItems] = useState([]);
@@ -26,8 +23,15 @@ export function CartProvider(props) {
         }
 
         setCartItems(newCartItems)
-        //Agregar sweet alert o toast
-        /* alert(`Agregaste ${newItem.title} al carrito!`); */
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: `Agregaste "${newItem.title}" al carrito`,
+            showConfirmButton: false,
+            timer: 1400,
+            timerProgressBar: true
+        });
     }
 
     function removeItem(idRemove) {
@@ -58,6 +62,20 @@ export function CartProvider(props) {
         return count;
     }
 
+    function submitCart() {
+        if (cartItems.length === 0) {
+            Swal.fire({ icon: 'info', title: 'Carrito vacío', text: 'Agrega productos antes de comprar.'});
+            return;
+        }
+        const total = cartItems.reduce((s, i) => s + (i.price * i.count), 0);
+        Swal.fire({
+            icon: 'success',
+            title: 'Compra realizada',
+            html: `<p>Gracias por tu compra.</p><p>Total: $ ${total}</p>`
+        });
+        setCartItems([]);
+    }
+
     // function calculateTotalPrice(){}
 
     function clearCart() {
@@ -65,7 +83,15 @@ export function CartProvider(props) {
     }
 
     return (
-        <cartContext.Provider value={{ cartItems, addToCart, removeItemCompleto, countItems, removeItem, clearCart }}>
+        <cartContext.Provider value={{
+            cartItems,
+            addToCart,
+            removeItemCompleto,
+            countItems,
+            removeItem,
+            clearCart,
+            submitCart
+        }}>
             {props.children}
         </cartContext.Provider>
     )

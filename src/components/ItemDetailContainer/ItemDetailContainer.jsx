@@ -1,7 +1,8 @@
 import Item from '../Cards/Card';
 import { getProductById } from '../../data/firebase';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import './ItemDetail.css';
 import cartContext from "../../context/cartContext";
 
@@ -21,11 +22,14 @@ export default function ItemDetailContainer(args) {
         return <p>Cargando...</p>
     }
 
+    const inCart = cartItems.find(i => i.id === product.id);
+    const count = inCart ? inCart.count : 0;
+
     return (
     <div className="item-detail-container">
         <div className="item-detail">
             <div className="item-detail-img">
-            <img src={product.imagenURL}/>
+            <img src={product.imagenURL} alt={product.nombre}/>
             <h2 className="item-detail-title">{product.nombre}</h2>
             </div>
             <div className='description'>
@@ -33,8 +37,15 @@ export default function ItemDetailContainer(args) {
                     <p>{product.descripcion}</p>
                 </div>
                 {product.precio > 0 ? <h3 className="item-detail-price">Precio: $ {product.precio}</h3> : <h3 className="item-detail-price">Gratis</h3>}
-                <div>
-                    <button onClick={ () => context.addToCart(product) }>Agregar al 🛒</button>
+                <div className="detail-controls">
+                    <button onClick={() => removeItem(product.id)} disabled={count === 0}>-</button>
+                    <span className="item-count">{count}</span>
+                    <button onClick={() => addToCart({
+                        id: product.id,
+                        title: product.nombre,
+                        imgURL: product.imagenURL,
+                        price: product.precio
+                    })}>+</button>
                 </div>
             </div>
         </div>
